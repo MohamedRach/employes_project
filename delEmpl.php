@@ -18,6 +18,7 @@
         $requete = "DELETE FROM employes WHERE code = $code ";
         $result = mysqli_query($connexion, $requete);
         if ($result){
+
             header('Location: http://localhost/serie/allEmlps.php');
             exit();
         } else{

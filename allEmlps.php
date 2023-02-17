@@ -42,8 +42,8 @@
                     $naissance = $row["dateNaissance"];
                     $service = $row["NumServ"];
                     echo "<tr>";
-                    echo "<td><a id = 'delete' href='delEmpl.php?code=$code'><img src='images/Screenshot 2023-02-01 203729.png' alt='supprimer un employes'></a></td>";
-                    echo "<td><a id = 'modifier' href='editEmpl.php?code=$code&nom=$nom&prenom=$prenom&sexe=$sexe&addresse=$addresse&naissance=$naissance&service=$service'><img src='images/update.png' alt='modifier un employes'></a></td>";
+                    echo "<td><a id = 'delete'><img src='images/Screenshot 2023-02-01 203729.png' alt='supprimer un employes'></a></td>";
+                    echo "<td><a id = 'modifier'><img src='images/update.png' alt='modifier un employes'></a></td>";
                     echo "<td>".$code."</td>";
                     echo "<td>".$nom."</td>";
                     echo "<td>".$prenom."</td>";
@@ -52,12 +52,27 @@
                     echo "<td>".$row["dateNaissance"]."</td>";
                     echo "<td>".$service."</td>";
                     echo "</tr>";
+                    echo "<script>
+                    const supprimer = document.getElementById('delete');
+                    const modifier = document.getElementById('modifier');
+                    supprimer.addEventListener('click', (e) => {
+                        if(confirm('Vous etes sure vous voulez supprimer cet employes') == true){
+                            supprimer.setAttribute('href', 'delEmpl.php?code=$code');
+                        } 
+                        
+                    })
+                    modifier.addEventListener('click', (e) => {
+                        if(confirm('Vous etes sure vous voulez modifier cet employes') == true){
+                            modifier.setAttribute('href', 'editEmpl.php?code=$code&nom=$nom&prenom=$prenom&sexe=$sexe&addresse=$addresse&naissance=$naissance&service=$service');
+                        }    
+                    })
+                </script>";
                 }
             }
             mysqli_close($connexion);
 
         ?>
     </table>
-    <script src="delete.js"></script>
+    
 </body>
 </html>
