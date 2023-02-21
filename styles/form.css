@@ -1,0 +1,21 @@
+.container{
+    margin-top: 150px;
+    border: 2px solid black;
+    padding: 10px;
+}
+.column{
+    padding-bottom: 10px;
+}
+input{
+    height: 1.1rem;
+}
+.button{
+    height: 1.5rem;
+    width: 5rem;
+    background-color: #009879;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    
+}

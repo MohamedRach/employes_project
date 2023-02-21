@@ -7,6 +7,12 @@
     <title>Votre profile</title>
 </head>
 <body>
+    <?php
+        session_start();
+        if(!(isset($_SESSION['login']))){
+            header('Location: http://localhost/serie/index.html');
+        }
+    ?>
     <h1>Votre profile</h1>
 </body>
 </html>

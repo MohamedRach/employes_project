@@ -16,37 +16,22 @@
         $login= $_POST['login']; 
         $password = $_POST['password']; 
     }
-    $requete = "SELECT * FROM users";
+    $requete = "SELECT * FROM users WHERE login = '$login' and password = '$password'";
     $result = mysqli_query($connexion, $requete);
-    session_start();
-    if($result){
-        while($row = mysqli_fetch_assoc($result)){
-            $loginV = $row["login"];
-            $passwordV = $row["password"];
-            $type = $row["type"];
-            if($loginV == $login && $passwordV == $password){
-                $_SESSION['loggedIn'] = true;
-                $_SESSION['login'] = $login;
-                $_SESSION['password'] = $password;
-                if($type == "AD"){
-                    header('Location: http://localhost/serie/allEmlps.php');
-                    exit(); 
-                    break;
-                } else {
-                    header('Location: http://localhost/serie/profile.php');
-                    exit();
-                    break;
-                }
-            } else {
-                $_SESSION['loggedIn'] = false;   
-            }
- 
-        }
-        if($_SESSION['loggedIn'] == false){
-            header('Location: http://localhost/serie/index.html');
-            exit();
-        }
-        
+    $row = mysqli_fetch_array($result);
+    if(is_array($row)){
+        session_start();
+        $_SESSION["login"] = $row['login'];
+        $_SESSION["password"] = $row['password'];
+    }else{
+        echo "something is wrong";
     }
+    
+    if($row['type'] == "AD"){
+        header('location:  http://localhost/serie/allEmlps.php');
+    }else {
+        header('location:  http://localhost/serie/profile.php');
+    }
+    
     mysqli_close($connexion);
 ?>

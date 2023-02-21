@@ -1,5 +1,9 @@
 
 <?php
+    session_start();
+    if(!(isset($_SESSION['login']))){
+        header('Location: http://localhost/serie/index.html');
+    }
     $host="localhost";
     $user="root";
     $password="";
